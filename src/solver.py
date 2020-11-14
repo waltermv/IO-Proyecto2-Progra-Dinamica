@@ -2,6 +2,7 @@
 
 import sys
 from knapsack_solver import *
+from sequences_solver import *
 
 def help():
     print("Este programa..")
@@ -26,18 +27,18 @@ def main(args):
         brute_force = True
 
     file_path = args[3]
-    input = input(file_path)
+    input = input(knapsack, file_path)
 
     if(knapsack):
         if(brute_force):
             knapsack_brute_force_solver(input)
         else:
             knapsack_dynamic_solver(input)
-    #TODO
-    '''else:
+    else:
         if (brute_force):
-
-        else:'''
+            sequences_brute_force_solver(input)
+        else:
+            sequences_dynamic_solver(input)
 
 
 if __name__ == '__main__':
