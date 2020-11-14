@@ -1,7 +1,7 @@
 import random
 
-def knapsack_generator(weight, quantity, min_weight, max_weight, min_value, max_value, min_quantity, max_quantity):
-    new_file = open("../prueba.txt", "w")
+def knapsack_generator(file_path, weight, quantity, min_weight, max_weight, min_value, max_value, min_quantity, max_quantity):
+    new_file = open("../"+file_path, "w")
     new_file.write(weight+"\n")
 
     for i in range(quantity):

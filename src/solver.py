@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
 import sys
-from knapsack_solver import *
-from sequences_solver import *
+from knapsack_solver import knapsack_brute_force_solver, knapsack_dynamic_solver
+from sequences_solver import sequences_brute_force_solver, sequences_dynamic_solver
 
 def help():
     print("Este programa..")
@@ -39,7 +39,6 @@ def main(args):
             sequences_brute_force_solver(input)
         else:
             sequences_dynamic_solver(input)
-
 
 if __name__ == '__main__':
     main(sys.argv)
