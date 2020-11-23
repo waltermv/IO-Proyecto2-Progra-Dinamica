@@ -17,7 +17,7 @@ def brute_force(sequence1, sequence2):
 
     length1 = len(sequence1)
     length2 = len(sequence2)
-    max_length = max(length1, length2)
+    #max_length = max(length1, length2)
     min_length = min(length1, length2)
 
     difference1 = 0
@@ -37,9 +37,6 @@ def brute_force(sequence1, sequence2):
                     max_score = score
                     current_sequence1 = element1
                     current_sequence2 = element2
-                    #print(max_score)
-                    #print(current_sequence1)
-                    #print(current_sequence2)
 
     return [max_score, current_sequence1, current_sequence2]
 
@@ -60,15 +57,11 @@ def sequence_score(sequence1, sequence2):
             score += missmatch
     return score
 
-
-#print(brute_force("AAAATTCGGG", "ACCG"))
-
-#Alineamiento global creado por Needleman y Wunsch
+#Algoritmo de alineamiento global creado por Needleman y Wunsch
 def sequences_dynamic_solver(input):
-    return dynamic(input.sequence1, input.sequence1)
+    return dynamic(input.sequence1, input.sequence1, input.file_path)
 
-
-def dynamic(sequence1, sequence2):
+def dynamic(sequence1, sequence2, file_name):
     length_seq1 = len(sequence1) + 1
     length_seq2 = len(sequence2) + 1
     matrix = [[[0, 0] for i in range(length_seq1)] for j in range(length_seq2)]
@@ -80,9 +73,6 @@ def dynamic(sequence1, sequence2):
         if i < length_seq2:
             matrix[i][0][0] = -2 * i
             matrix[i][0][1] |= upper
-
-    # for i in matrix:
-    #    print(i)
 
     for i in range(1, length_seq1):
         for j in range(1, length_seq2):
@@ -119,8 +109,7 @@ def dynamic(sequence1, sequence2):
             sequence_answer2 = "_" + sequence_answer2
             j -= 1
 
-    # for i in matrix:
-    #	print(i)
+    print_matrix(matrix, file_name)
 
     print(answer)
     print(sequence_answer1)
@@ -131,4 +120,19 @@ def char_score(char1, char2):
         return match
     return missmatch
 
-#dynamic("ATTGTGATCC", "TTGCATCGGC")
+def print_matrix(matrix, file_name):
+    file = open("../"+file_name+"_solution.csv", "w")  #Crea el archivo de salida
+    for i in matrix:
+        for j in i:
+            if j[1] & diagonal:
+                file.write('↖')
+            if j[1] & upper:
+                file.write('↑')
+            if j[1] & left:
+                file.write('←')
+            file.write(' ' + str(j[0]) + ',')
+        file.write('\n')
+
+    file.close()
+
+dynamic("ATTGTGATCC", "TTGCATCGGC", "prueba ")
