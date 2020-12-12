@@ -1,27 +1,35 @@
-class input:
-    def __init__(self, file_path):
-        self.read_input(file_path)
-
-    def read_input(self, file_path):
-        file = open(file_path) #"r"
-
-        line = file.readline().split(',')
-        if len(line) == 1:
-            self.knapsack = True
-            self.max_weight = int(line[0])
-
-            #peso, beneficio, cantidad
-            identifier = 1
-            line = file.readline().split(',')
-            while line != "":
-                line = [int(i) for i in line]
-                for i in range(line[2]):
-                    self.items_list.append(line[:2].append(identifier))
-                identifier += 1
-                line = file.readline().split(',')
+class input_class:
+    def __init__(self, knapsack, file_path):
+        self.file_path = file_path
+        if(knapsack):
+            self.read_knapsack_input(file_path)
         else:
-            self.knapsack = False
-            self.scoring = [int(i) for i in line]
+            self.read_sequences_input(file_path)
 
-            self.row1 = file.readline()
-            self.row2 = file.readline()
+    def read_knapsack_input(self, file_path):
+        file = open("../"+file_path, "r") #"r"
+        line = file.readline()
+
+        self.max_weight = int(line)
+        self.items_list = []
+
+        #peso, beneficio, cantidad
+        identifier = 1
+        #line = file.readline()
+        #line = line.rstrip('\n').split(',')
+        #print(line)
+        #self.weight = int(file.readline())
+        #count = 0
+        for line in file:
+            line = list(map(int, line.split(',')))
+            for i in range(line[2]):
+                self.items_list.append(line[:2]+[identifier])  # Verificar
+            identifier += 1
+
+        file.close()
+
+    def read_sequences_input(self, file_path):
+        file = open("../"+file_path, "r")  # "r"
+
+        self.sequence1 = file.readline().rstrip('\n')
+        self.sequence2 = file.readline().rstrip('\n')
