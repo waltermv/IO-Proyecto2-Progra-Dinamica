@@ -6,7 +6,7 @@ Email: waltermvgit@gmail.com
 
 Programa para generar problemas de contenedor (o también llamados mochila) y de alineamiento de secuencias.
 Se recibirán especificaciones de cómo deberán ser los parámetros y la aplicación deberá generar problemas que cumplan
-con estas delimitaciones.
+con estas delimitaciones. Para ambos problemas el archivo generado aparecerá en la carpeta raíz del proyecto.
 Este programa fue creado como solución al proyecto programdo del curso de Investigación de Operaciones en el segundo
 semestre del año 2020 dado en el Instituto Tecnológico de Costa Rica.
 
@@ -50,12 +50,13 @@ import sys
 from knapsack_generator import knapsack_generator
 from sequences_generator import sequences_generator
 
+# Función para imprimir la información del programa generador de problemas de contenedor y de alineamiento de secuencias.
 def help():
     print("Autor: Walter Morales Vásquez\n\
 Email: waltermvgit@gmail.com\n\n\
 Programa para generar problemas de contenedor (o también llamados mochila) y de alineamiento de secuencias.\n\
 Se recibirán especificaciones de cómo deberán ser los parámetros y la aplicación deberá generar problemas que cumplan\n\
-con estas delimitaciones.\n\
+con estas delimitaciones. Para ambos problemas el archivo generado aparecerá en la carpeta raíz del proyecto.\n\
 Este programa fue creado como solución al proyecto programdo del curso de Investigación de Operaciones en el segundo\n\
 semestre del año 2020 dado en el Instituto Tecnológico de Costa Rica.\n\n\
 Uso:\n\
@@ -87,47 +88,54 @@ de este mismo proyecto.\n\n\
 Disponible en: https://github.com/waltermv/IO-Proyecto2-Progra-Dinamica\n\
 Este software se encuentra bajo licencia: GPLv3")
 
+# Función principal del módulo generador de problemas de contenedor y de alineamiento de secuencias.
 def main(args):
+    # Se comprueba la cantidad de argumentos recibidos.
     if len(args) < 2:
         print("Uso: python3 generator.py [-h] PROBLEMA ARCHIVO PARÁMETROS")
         exit(1)
 
+    # Si existe un "-h" en algún lado de los argumentos se imprime la información del programa.
     if "-h" in args:
         help()
-        exit(0)
+        exit(0)             # Se termina con la ejecución de la aplicación.
 
-    knapsack = False
+    knapsack = False        # Parámetro que indica si se realizará un problema de mochila o de alineamiento de secuencias.
 
-    if args[1] == "1":
-        knapsack = True
+    if args[1] == "1":      # Se comprueba si el primer argumento es 1 o es 2.
+        knapsack = True     # Si es 1 se creará un problema de mochila.
 
-    file_path = args[2]
+    file_path = args[2]     # Se recibe el path en donde se generará el archivo resultado.
 
-    if knapsack:
+    if knapsack:            # Si piden un problema de mochila.
+        # Comprobamos si es correcta la cantidad de argumentos.
         if len(args) != 11:
             print("Uso: python3 generator.py PROBLEMA ARCHIVO \
             W N minPeso maxPeso minBeneficio maxBeneficio minCantidad maxCantidad")
             exit(1)
 
-        weight = args[3]
-        quantity = int(args[4])
-        min_weight = int(args[5])
-        max_weight = int(args[6])
-        min_value = int(args[7])
-        max_value = int(args[8])
-        min_quantity = int(args[9])
-        max_quantity = int(args[10])
+        weight = args[3]                # Peso máximo de la mochila.
+        quantity = int(args[4])         # Cantidad de elementos para comprobar.
+        min_weight = int(args[5])       # Límite inferior para definir el peso de los elementos.
+        max_weight = int(args[6])       # Límite superior para el peso de los elementos.
+        min_value = int(args[7])        # Beneficio mínimo de colocar al elemento en el deposito.
+        max_value = int(args[8])        # Máximo que se obtiene de colocar al elemento en el contenedor.
+        min_quantity = int(args[9])     # Mínima cantidad en el inventario del elemento.
+        max_quantity = int(args[10])    # Cantidad máxima que puede estar en el inventario.
 
+        # Se llama a la función capaz de generar problemas de mochila.
         knapsack_generator(file_path, weight, quantity, min_weight, max_weight, min_value, max_value, min_quantity, max_quantity)
-    else:
-        if len(args) != 5:
+    else:                   # Si solicitaron un problema de alineamiento de secuencias.
+        if len(args) != 5:  # Se comprueba la cantidad de parámetros.
             print("Uso: python3 generator.py PROBLEMA ARCHIVO largoH1 largoH2")
             exit(1)
 
-        length1 = int(args[3])
-        length2 = int(args[4])
+        length1 = int(args[3])      # Largo de la primera hilera.
+        length2 = int(args[4])      # Largo de la segunda secuencia.
 
+        # Se llama al método generador de problemas de alineamiento.
         sequences_generator(file_path, length1, length2)
 
+# Para definir la función principal del programa.
 if __name__ == '__main__':
     main(sys.argv)
