@@ -13,29 +13,29 @@ Uso:
 python3 solver.py [-h] PROBLEMA ALGORITMO ARCHIVO
 
 Donde:
-> El parámetro -h es opcional y muestra la forma de utilización del programa.
-> PROBLEMA será el número 1 o 2; 1 si se desea resolver un problema de mochila y 2 si es de alineamiento.
-> ALGORITMO es un valor de 1 o 2; si se desea solucionar mediante fuerza bruta 1 y si se requiere usar
+- El parámetro -h es opcional y muestra la forma de utilización del programa.
+- PROBLEMA será el número 1 o 2; 1 si se desea resolver un problema de mochila y 2 si es de alineamiento.
+- ALGORITMO es un valor de 1 o 2; si se desea solucionar mediante fuerza bruta 1 y si se requiere usar
 programación dinámica 2.
-> ARCHIVO es el nombre del archivo de entrada el cual se obtendrán los datos del problema. Deberá encontrarse
+- ARCHIVO es el nombre del archivo de entrada el cual se obtendrán los datos del problema. Deberá encontrarse
 en el directorio raíz del proyecto.
-    > En el caso de que se use mochila:
+    - En el caso de que se use mochila:
         - Línea 1: Peso máximo soportado por el contenedor. Ej: 50
         - Línea i: Elemento en la posición i (peso, beneficio, cantidad). Ej: 5,20,4
                                                                               15,50,3
                                                                               10,60,3
 
-    > En el caso de ser un problema de alineamiento:
+    - En el caso de ser un problema de alineamiento:
         - Línea 1: Primera secuencia a alinear. Ej: ATTGTGATCC
         - Línea 2: Segunda secuencia a alinear. Ej: TTGCATCGGC
 
 Salida:
-> En el caso de mochila:
+- En el caso de mochila:
     - Línea 1: Beneficio máximo posible. Ej: 260
     - Línea j: Posición original del artículo: i, cantidad de unidades. Ej: 1,4
                                                                             3,3
 
-> En el caso de alineamiento:
+- En el caso de alineamiento:
     - Línea 1: Indica el "score" final de los alineamientos. Ej: -2
     - Línea 2: Hilera resultado para la primer secuencia.
     - Línea 3: Hilera resultado para la segunda secuencia.
@@ -55,11 +55,11 @@ Uso:
 python3 generator.py [-h] PROBLEMA ARCHIVO PARÁMETROS
 
 Donde:
-> El parámetro -h es opcional y muestra la forma de utilización del programa.
-> PROBLEMA será el número 1 o 2; 1 si se desea obtener un problema de mochila y 2 si es de alineamiento.
-> ARCHIVO será el nombre del archivo con los problemas resultantes.
-> PARÁMETROS limitaciones que deberá cumplir el programa.
-    > Si se requieren problemas de mochila:
+- El parámetro -h es opcional y muestra la forma de utilización del programa.
+- PROBLEMA será el número 1 o 2; 1 si se desea obtener un problema de mochila y 2 si es de alineamiento.
+- ARCHIVO será el nombre del archivo con los problemas resultantes.
+- PARÁMETROS limitaciones que deberá cumplir el programa.
+    - Si se requieren problemas de mochila:
         W N  minPeso maxPeso minBeneficio maxBeneficio minCantidad maxCantidad
 
         W: Peso soportado por el contenedor.
@@ -72,7 +72,7 @@ Donde:
         maxCantidad: Máxima cantidad disponible para un objeto para la mochila.
     *Ejemplo: python3 generator.py 1 salida.txt 50 3 5 15 20 60 3 4
 
-    > Si se necesitan problemas de alineamiento de secuencias:
+    - Si se necesitan problemas de alineamiento de secuencias:
         largoH1 largoH2
 
         largoH1: Largo específico de la primera secuencia.
