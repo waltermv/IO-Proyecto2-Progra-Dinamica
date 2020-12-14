@@ -165,10 +165,11 @@ def write_matrix_in_file(matrix, file_name):
     file.close()        # Cerramos el archivo.
 
 # Utilizado para comprobar el funcionamiento de la función "get_combinations"
-
+'''
 secuencia = "GTCAA"
 espacios = 2
 lista = get_combinations(secuencia, len(secuencia), espacios)
 print(str(len(lista))+" combinaciones obtenidas de "+secuencia+" con "+str(espacios)+" espacios\n")
 for i in lista:
     print(i)
+'''
