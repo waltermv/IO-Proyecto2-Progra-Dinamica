@@ -83,18 +83,25 @@ def dynamic(knapsack_weight, items_quantity, file_name):
                                                             # beneficio al pasar de la fila actual y la de atrás es
                                                             # porque se ha insertado al elemento.
             if answers_list == []:      # Si la lista era vacía.
-                answers_list.append([items_list[items_quantity-1][identifier], 1])  # Se inserta al elemento.
+                answers_list.append([items_list[items_quantity][identifier], 1])  # Se inserta al elemento.
             else:
-                if items_list[items_quantity-1][identifier] == answers_list[-1][0]: # Si el identificador era el mismo
+                if items_list[items_quantity][identifier] == answers_list[-1][0]: # Si el identificador era el mismo
                                                             # del anterior es porque era el mismo.
                     answers_list[-1][1] += 1                # Se aumenta en 1 la cantidad del elemento.
                 else:
-                    answers_list.append([items_list[items_quantity-1][identifier], 1])  # Se agrega al elemento como
+                    answers_list.append([items_list[items_quantity][identifier], 1])  # Se agrega al elemento como
                                                                                         # nuevo.
-            knapsack_weight -= items_list[items_quantity-1][weight]     # Se le resta al tamaño de la mochila el tamaño
+            knapsack_weight -= items_list[items_quantity][weight]     # Se le resta al tamaño de la mochila el tamaño
                                                                         # del elemento recién identificado.
         items_quantity -= 1         # Disminuimos en 1 el contador de elementos.
 
+    if knapsack_weight:             # Se comprueba si el último elemento se puede insertar.
+        if items_list[0][identifier] == answers_list[-1][0]:    # Si el identificador era el mismo
+                                                                # del anterior es porque era el mismo.
+            answers_list[-1][1] += 1    # Se aumenta en 1 la cantidad del elemento.
+        else:
+            answers_list.append([items_list[0][identifier], 1])     # Se agrega al elemento como
+                                                                    # nuevo.
     write_matrix_in_file(matrix, file_name)
     answers_list.reverse()          # Se da la lista al revés porque se leyó de abajo hacía arriba.
     return [answer] + answers_list  # Retornamos la respuesta.
